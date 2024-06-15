@@ -9,9 +9,10 @@ import { IoCallOutline } from "react-icons/io5";
 
 const Contact = () => {
 
-    const serviceRef= useRef(null)
+    const contactRef= useRef(null)
 
 useEffect(() => {
+   const currentContactRef= contactRef.current;
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
@@ -24,20 +25,20 @@ useEffect(() => {
     }
   );
 
-  if (serviceRef.current) {
-    observer.observe(serviceRef.current);
+  if (currentContactRef) {
+    observer.observe(currentContactRef);
   }
 
   return () => {
-    if (serviceRef.current) {
-      observer.unobserve(serviceRef.current);
+    if (currentContactRef) {
+      observer.unobserve(currentContactRef);
     }
   };
-}, [serviceRef]);
+}, []);
 
     return (
 
-        <div className='contact' ref={serviceRef}>
+        <div className='contact' ref={contactRef}>
             <div className='contact-about'>
                 <h3>Akeshya</h3>
                 <p>Designers, developers & marketeers capable of delivering solutions according to your needs,</p>

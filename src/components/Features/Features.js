@@ -5,9 +5,10 @@ import   {FeaturesData} from './FeaturesData.js'
 
 const Features = () => {
 
-  const serviceRef= useRef(null)
+  const featureRef= useRef(null)
   
   useEffect(() => {
+    const currentFeatureRef= featureRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -20,19 +21,19 @@ const Features = () => {
       }
     );
 
-    if (serviceRef.current) {
-      observer.observe(serviceRef.current);
+    if (currentFeatureRef) {
+      observer.observe(currentFeatureRef);
     }
 
     return () => {
-      if (serviceRef.current) {
-        observer.unobserve(serviceRef.current);
+      if (currentFeatureRef) {
+        observer.unobserve(currentFeatureRef);
       }
     };
-  }, [serviceRef]);
+  }, []);
 
     return (
-      <div className="feature-container" ref={serviceRef}>
+      <div className="feature-container" ref={featureRef}>
         {FeaturesData.map((feature) => (
           <div key={feature.id} className="feature-item">
             <div className="feature-icon">{feature.emote}</div>

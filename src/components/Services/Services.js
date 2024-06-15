@@ -8,6 +8,7 @@ const Services = () => {
   const serviceRef= useRef(null)
 
   useEffect(() => {
+    const currentServicesRef= serviceRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -20,16 +21,16 @@ const Services = () => {
       }
     );
 
-    if (serviceRef.current) {
-      observer.observe(serviceRef.current);
+    if (currentServicesRef) {
+      observer.observe(currentServicesRef);
     }
 
     return () => {
-      if (serviceRef.current) {
-        observer.unobserve(serviceRef.current);
+      if (currentServicesRef) {
+        observer.unobserve(currentServicesRef);
       }
     };
-  }, [serviceRef]);
+  }, []);
 
   return (
     <section>

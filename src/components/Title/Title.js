@@ -4,9 +4,10 @@ import './Title.css'
 
 const Title = ({title, subTitle}) => {
 
-  const navbarRef = useRef(null);
+  const titleRef = useRef(null);
 
   useEffect(() => {
+    const currentTitleRef=titleRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,19 +20,19 @@ const Title = ({title, subTitle}) => {
       }
     );
 
-    if (navbarRef.current) {
-      observer.observe(navbarRef.current);
+    if (currentTitleRef) {
+      observer.observe(currentTitleRef);
     }
 
     return () => {
-      if (navbarRef.current) {
-        observer.unobserve(navbarRef.current);
+      if (currentTitleRef) {
+        observer.unobserve(currentTitleRef);
       }
     };
-  }, [navbarRef]);
+  }, []);
 
   return (
-    <div className='titles' ref={navbarRef}>
+    <div className='titles' ref={titleRef}>
         <h2 className='h2'>{title}</h2>
         <p>{subTitle}</p>
     </div>

@@ -5,9 +5,11 @@ import 'remixicon/fonts/remixicon.css';
 
 const About = () => {
 
-    const navbarRef = useRef(null);
+    const aboutRef = useRef(null);
 
     useEffect(() => {
+
+        const currentAboutRef= aboutRef.current;
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -20,19 +22,19 @@ const About = () => {
         }
       );
   
-      if (navbarRef.current) {
-        observer.observe(navbarRef.current);
+      if (currentAboutRef) {
+        observer.observe(currentAboutRef);
       }
   
       return () => {
-        if (navbarRef.current) {
-          observer.unobserve(navbarRef.current);
+        if (currentAboutRef) {
+          observer.unobserve(currentAboutRef);
         }
       };
-    }, [navbarRef]);
+    }, []);
 
     return (
-        <div className='about' ref={navbarRef}>
+        <div className='about' ref={aboutRef}>
             <div className='about-left'>
                 <p>We are Akeshya, a firm that specializes in web design and marketing. We help transform ideas into reality with a team of passionate graphic designers, web developers, and seasoned marketing advisors.
                 </p>

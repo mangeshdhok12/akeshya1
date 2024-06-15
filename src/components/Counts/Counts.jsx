@@ -11,6 +11,8 @@ const Counts = () => {
     const countRef = useRef(null)
 
     useEffect(() => {
+
+        const currentCountRef= countRef.current;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -20,12 +22,12 @@ const Counts = () => {
             },
             { threshold: 0.1 }
         )
-        if (countRef.current) {
-            observer.observe(countRef.current)
+        if (currentCountRef) {
+            observer.observe(currentCountRef)
         }
         return () => {
-            if (countRef.current) {
-                observer.unobserve(countRef.current)
+            if (currentCountRef) {
+                observer.unobserve(currentCountRef)
             }
         }
     }, [])

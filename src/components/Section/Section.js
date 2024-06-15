@@ -6,9 +6,10 @@ import './Section.css'
 
 const Section = () => {
 
-  const navbarRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
+    const currentSectionRef= sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -21,20 +22,20 @@ const Section = () => {
       }
     );
 
-    if (navbarRef.current) {
-      observer.observe(navbarRef.current);
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (navbarRef.current) {
-        observer.unobserve(navbarRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
-  }, [navbarRef]);
+  }, []);
 
   return (
     <section className='sections'>
-      <div className='container'  ref={navbarRef}>
+      <div className='container'  ref={sectionRef}>
         <div className='row'>
             <div className='img'> <img src="/client-1.png" alt='img' className='image'/> </div>
             <div className='img'> <img src="/client-2.png" alt='img' className='image'/> </div>
